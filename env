@@ -1,0 +1,2 @@
+PORT=3000
+MONGO_URI=mongodb+srv://ericwin:1234@ericwin.qwmnnm0.mongodb.net/?retryWrites=true&w=majority&appName=ericwin
