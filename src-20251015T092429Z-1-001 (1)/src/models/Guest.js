@@ -1,34 +1,8 @@
-const mongoose = require('mongoose');
+const express = require('express');
+const router = express.Router();
+const { getBookings, getBooking, createBooking, updateBooking, deleteBooking } = require('../controllers/bookingController');
 
-const guestSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: [true, 'Guest name is required'],
-        trim: true
-    },
-    email: {
-        type: String,
-        required: [true, 'Email is required'],
-        unique: true,
-        lowercase: true,
-        trim: true,
-        match: [/^\S+@\S+\.\S+$/, 'Please provide a valid email']
-    },
-    phone: {
-        type: String,
-        required: [true, 'Phone number is required'],
-        trim: true
-    },
-    address: {
-        type: String,
-        trim: true
-    },
-    idNumber: {
-        type: String,
-        trim: true
-    }
-    }, {
-    timestamps: true
-});
+router.route('/').get(getBookings).post(createBooking);
+router.route('/:id').get(getBooking).put(updateBooking).delete(deleteBooking);
 
-module.exports = mongoose.model('Guest', guestSchema);
+module.exports = router;
