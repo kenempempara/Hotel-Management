@@ -1,40 +1,8 @@
-const mongoose = require('mongoose');
+const express = require('express');
+const router = express.Router();
+const { getBookings, getBooking, createBooking, updateBooking, deleteBooking } = require('../controllers/bookingController');
 
-const roomSchema = new mongoose.Schema({
-    number: {
-        type: String,
-        required: [true, 'Room number is required'],
-        unique: true,
-        trim: true
-    },
-    type: {
-        type: String,
-        required: [true, 'Room type is required'],
-        enum: ['single', 'double', 'suite', 'deluxe'],
-        lowercase: true
-    },
-    price: {
-        type: Number,
-        required: [true, 'Price is required'],
-        min: [0, 'Price cannot be negative']
-    },
-    status: {
-        type: String,
-        enum: ['available', 'occupied', 'maintenance'],
-        default: 'available',
-        lowercase: true
-    },
-    amenities: {
-        type: [String],
-        default: []
-    },
-    capacity: {
-        type: Number,
-        default: 1,
-        min: 1
-    }
-    }, {
-    timestamps: true
-});
+router.route('/').get(getBookings).post(createBooking);
+router.route('/:id').get(getBooking).put(updateBooking).delete(deleteBooking);
 
-module.exports = mongoose.model('Room', roomSchema);
+module.exports = router;
