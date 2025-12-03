@@ -4,7 +4,7 @@
 A full RESTful API for hotel administration created with Node.js, Express, and MongoDB. This API supports full CRUD operations for managing rooms, guests, and bookings, as well as sophisticated relationship capabilities like room availability checking, double-booking prevention, and automatic room status monitoring.
 </p>
 
-
+### BASE URL = https://hotel-management-10.onrender.com
 <hr>
 
 <h2>Features</h2>
